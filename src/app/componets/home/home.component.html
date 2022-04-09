@@ -1,8 +1,8 @@
 <div class="row">
   <div *ngFor="let card of cards">
     <div
-      class="card text-white bg-'{{ card.color }}' mb-3"
-      style="max-width: 18rem"
+      class="card text-white bg-{{ card.color }} mb-3"
+      style="max-width: 18rem; margin-left: 10px"
     >
       <div class="card-header">{{ card.title }}</div>
       <div class="card-body">
@@ -15,3 +15,22 @@
     </div>
   </div>
 </div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">TIPO</th>
+      <th scope="col">NOME</th>
+      <th scope="col">VALOR</th>
+      <th scope="col">DATA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mov of movimentacoes">
+      <th scope="row">{{ mov.tipo }}</th>
+      <td>{{ mov.nome }}</td>
+      <td>{{ mov.valor }}</td>
+      <td>{{ mov.data }}</td>
+    </tr>
+  </tbody>
+</table>
