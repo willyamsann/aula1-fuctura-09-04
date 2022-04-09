@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from 'src/app/models/card';
 import { Movimentacao } from 'src/app/models/movimentacao';
+import { Root, Slip } from 'src/app/models/slip';
+import { SlipService } from 'src/app/services/slip.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,12 +11,15 @@ import { Movimentacao } from 'src/app/models/movimentacao';
 export class HomeComponent implements OnInit {
   cards: Card[] = [];
   movimentacoes: Movimentacao[] = [];
-  constructor() {}
+  constructor(private slipService: SlipService) {}
+
+  slip?: Root;
 
   ngOnInit(): void {
     this.initCards();
     console.log(this.cards);
     this.initMovimentacao();
+    this.getSlip();
     console.log(this.movimentacoes);
   }
 
@@ -49,5 +54,12 @@ export class HomeComponent implements OnInit {
 
       this.movimentacoes.push(movimentacao);
     }
+  }
+
+  getSlip() {
+    this.slipService.getSlip().subscribe((data: Root) => {
+      this.slip = data;
+      console.log(data);
+    });
   }
 }
